@@ -1,3 +1,25 @@
 <resources>
     <string name="app_name">CheeseApp</string>
+    
+    <string name="ingredients_card">Ингредиенты</string>
+    <string name="pressing_card">Прессование</string>
+    <string name="salting_card">Посол</string>
+    <string name="maturation_card">Созревание</string>
+
+    <string name="other_info">Другая информация</string>
+    <string name="manual">Руководство</string>
+
+    <string name="milk">Молоко</string>
+    <string name="calcium">Кальций</string>
+    <string name="ferment">Фермент</string>
+    <string name="CHN">CHN-19</string>
+    <string name="serum">Сыворотка</string>
+    <string name="time">Время</string>
+    
+    <string name="kg">кг</string>
+    <string name="gr">гр</string>
+    <string name="minutes">мин</string>
+    <string name="liters">л</string>
+    <string name="milliliters">мл</string>
+    
 </resources>

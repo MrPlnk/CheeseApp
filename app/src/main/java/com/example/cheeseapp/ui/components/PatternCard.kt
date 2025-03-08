@@ -32,6 +32,8 @@ fun PatternCard(
     onUserEntering: (String) -> Unit,
     onKeyboardDone: () -> Unit,
     parameter: String,
+    @StringRes parameterName: Int,
+    @StringRes parameterDimen: Int,
     @StringRes cardsName: Int,
     cardFields: List<LambdaField>,
     modifier: Modifier = Modifier
@@ -66,7 +68,7 @@ fun PatternCard(
                 singleLine = true,
                 shape = shapes.large,
                 label = {
-                    Text(text = stringResource(R.string.milk) + ", ${stringResource(R.string.liters)}")
+                    Text(text = stringResource(parameterName) + ", ${stringResource(parameterDimen)}")
                 },
                 keyboardOptions = KeyboardOptions.Default.copy(
                     imeAction = ImeAction.Done,
@@ -95,12 +97,16 @@ fun PatternCardPreview(){
 
             )
     )
+    val parameterName = R.string.milk
+    val parameterDimen = R.string.liters
 
     PatternCard(
         userEnter = value,
         onUserEntering = onUserEnter,
         onKeyboardDone = {},
         parameter = value,
+        parameterName = parameterName,
+        parameterDimen = parameterDimen,
         cardsName = R.string.salting_card,
         cardFields = list,
     )

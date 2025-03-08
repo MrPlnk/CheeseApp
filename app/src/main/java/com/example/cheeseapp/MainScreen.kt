@@ -94,18 +94,24 @@ fun CheeseApp(
                 )
             }
 
-            composable(route = MainScreen.Salting.name){
+            composable(route = MainScreen.Pressing.name){
                 SaltingScreen(
                     userEnter = userEnterSalting,
                     onUserEntering = {newValue: String -> userEnterSalting = newValue},
                     onKeyboardDone = {viewModel.updateWeight(userEnterSalting)},
                     parameter = uiState.weightOfCheese,
-                    cardsName = R.string.salting_card,
+                    parameterName = R.string.weight_of_cheese,
+                    parameterDimen = R.string.gr,
+                    cardsName = R.string.pressing_card,
                     cardFields = DataSource.saltingFields,
                     modifier = Modifier
                         .padding(dimensionResource(R.dimen.medium_padding))
                         .fillMaxWidth()
                 )
+            }
+
+            composable(route = MainScreen.Salting.name){
+
             }
         }
     }

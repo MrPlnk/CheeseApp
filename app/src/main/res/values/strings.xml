@@ -15,6 +15,7 @@
     <string name="CHN">CHN-19</string>
     <string name="serum">Сыворотка</string>
     <string name="time">Время</string>
+    <string name="weight_of_cheese">Вес головки</string>
     
     <string name="kg">кг</string>
     <string name="gr">гр</string>

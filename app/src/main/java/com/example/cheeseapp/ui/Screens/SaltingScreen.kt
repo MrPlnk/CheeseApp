@@ -38,6 +38,8 @@ fun SaltingScreen(
     onUserEntering: (String) -> Unit,
     onKeyboardDone: () -> Unit,
     parameter: String,
+    @StringRes parameterName: Int,
+    @StringRes parameterDimen: Int,
     @StringRes cardsName: Int,
     cardFields: List<LambdaField>,
     modifier: Modifier = Modifier
@@ -48,6 +50,8 @@ fun SaltingScreen(
         onKeyboardDone = onKeyboardDone,
         parameter = parameter,
         cardsName = cardsName,
+        parameterName = parameterName,
+        parameterDimen = parameterDimen,
         cardFields = cardFields,
         modifier = modifier
     )

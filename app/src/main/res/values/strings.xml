@@ -21,5 +21,10 @@
     <string name="minutes">мин</string>
     <string name="liters">л</string>
     <string name="milliliters">мл</string>
-    
+
+    <string name="minutes_15">15 минут</string>
+    <string name="minutes_30">30 минут</string>
+    <string name="minutes_120">120 минут</string>
+    <string name="hours_10">10 часов</string>
+
 </resources>

@@ -18,4 +18,10 @@ class CheeseViewModel: ViewModel() {
             )
         }
     }
+
+    fun updateWeight(newValue: String){
+        _uiState.update{ currentState ->
+            currentState.copy(weightOfCheese = newValue)
+        }
+    }
 }

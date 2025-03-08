@@ -21,6 +21,7 @@ import com.example.cheeseapp.R
 fun StartScreen(
     modifier: Modifier = Modifier,
     toIngredientsScreen: () -> Unit = {},
+    toSaltingScreen: () -> Unit = {},
     toOthersScreen: () -> Unit = {},
     toManualScreen: () -> Unit = {},
 ){
@@ -37,6 +38,10 @@ fun StartScreen(
         StartScreenButton(
             onClick = toIngredientsScreen,
             text = stringResource(R.string.ingredients_card)
+        )
+        StartScreenButton(
+            onClick = toSaltingScreen,
+            text = stringResource(R.string.salting_card)
         )
         StartScreenButton(
             onClick = toOthersScreen,

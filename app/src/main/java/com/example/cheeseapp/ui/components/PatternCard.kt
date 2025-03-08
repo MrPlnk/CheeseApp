@@ -1,8 +1,8 @@
-package com.example.cheeseapp.ui.Screens
+package com.example.cheeseapp.ui.components
 
+import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardActions
@@ -16,7 +16,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
@@ -25,23 +24,18 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.cheeseapp.R
-import com.example.cheeseapp.data.CheeseUiState
-import com.example.cheeseapp.data.Field
-import com.example.cheeseapp.ui.components.FieldComposable
+import com.example.cheeseapp.data.LambdaField
 
 @Composable
-fun IngredientsScreen(
-    uiState: CheeseUiState,
-    userEnter: String = "14",
-    onUserEntering: (String) -> Unit = {},
-    onKeyboardDone: () -> Unit = {},
-    caclCalc: (String) -> (String) = {value: String -> value},
-    fermCalc: (String) -> (String) = {value: String -> value},
-    chnCalc: (String) -> (String) = {value: String -> value},
-    modifier: Modifier = Modifier,
+fun PatternCard(
+    userEnter: String,
+    onUserEntering: (String) -> Unit,
+    onKeyboardDone: () -> Unit,
+    parameter: String,
+    @StringRes cardsName: Int,
+    cardFields: List<LambdaField>,
+    modifier: Modifier = Modifier
 ){
-    val milkAmount = uiState.amountOfMilk
-
     Card(
         modifier = modifier
     ) {
@@ -53,27 +47,18 @@ fun IngredientsScreen(
 
         ){
             Text(
-                text = stringResource(R.string.ingredients_card),
+                text = stringResource(cardsName),
                 textAlign = TextAlign.Center,
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(bottom = dimensionResource(R.dimen.small_padding))
             )
-            FieldComposable(Field(
-                stringResource(R.string.calcium),
-                caclCalc(milkAmount),
-                stringResource(R.string.milliliters))
-            )
-            FieldComposable(Field(
-                stringResource(R.string.ferment),
-                fermCalc(milkAmount),
-                stringResource(R.string.milliliters)
-            ))
-            FieldComposable(Field(
-                stringResource(R.string.CHN),
-                chnCalc(milkAmount),
-                stringResource(R.string.gr)
-            ))
+            cardFields.forEach{
+                LambdaFieldComposable(
+                    parameter,
+                    it,
+                )
+            }
 
             OutlinedTextField(
                 value = userEnter,
@@ -93,15 +78,30 @@ fun IngredientsScreen(
                 modifier = Modifier.fillMaxWidth()
             )
         }
-
     }
 }
 
-
 @Preview
 @Composable
-fun IngredientsScreenPreview(
-    modifier: Modifier = Modifier,
-){
-    IngredientsScreen(CheeseUiState("28", "2"))
+fun PatternCardPreview(){
+    var value by remember{ mutableStateOf("") }
+    val onUserEnter: (String) -> Unit = {newValue: String -> value = newValue}
+    val list: List<LambdaField> = listOf(
+        LambdaField(
+            R.string.minutes_15,
+            {newValue: String ->
+                (newValue.toFloat() * 2 / 1000).toString()},
+            R.string.kg,
+
+            )
+    )
+
+    PatternCard(
+        userEnter = value,
+        onUserEntering = onUserEnter,
+        onKeyboardDone = {},
+        parameter = value,
+        cardsName = R.string.salting_card,
+        cardFields = list,
+    )
 }

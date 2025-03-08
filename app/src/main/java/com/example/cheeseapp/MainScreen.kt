@@ -1,6 +1,7 @@
 package com.example.cheeseapp
 
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
@@ -10,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
@@ -21,8 +23,11 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.cheeseapp.data.DataSource
+import com.example.cheeseapp.data.LambdaField
 import com.example.cheeseapp.ui.CheeseViewModel
 import com.example.cheeseapp.ui.Screens.IngredientsScreen
+import com.example.cheeseapp.ui.Screens.SaltingScreen
 import com.example.cheeseapp.ui.Screens.StartScreen
 
 enum class MainScreen {
@@ -46,6 +51,7 @@ fun CheeseApp(
     ) {  innerPaddin ->
         val uiState by viewModel.uiState.collectAsState()
         var userEnter by rememberSaveable { mutableStateOf("") }
+        var userEnterSalting by rememberSaveable { mutableStateOf("") }
 
         NavHost(
             navController = navController,
@@ -55,6 +61,7 @@ fun CheeseApp(
             composable(route = MainScreen.Start.name) {
                 StartScreen(
                     toIngredientsScreen = {navController.navigate(MainScreen.Ingredients.name)},
+                    toSaltingScreen = {navController.navigate(MainScreen.Salting.name)},
                     toOthersScreen = {navController.navigate(MainScreen.Other.name)},
                     toManualScreen = {navController.navigate(MainScreen.Manual.name)},
                     modifier = Modifier
@@ -86,9 +93,24 @@ fun CheeseApp(
                     modifier = Modifier.padding(dimensionResource(R.dimen.medium_padding))
                 )
             }
+
+            composable(route = MainScreen.Salting.name){
+                SaltingScreen(
+                    userEnter = userEnterSalting,
+                    onUserEntering = {newValue: String -> userEnterSalting = newValue},
+                    onKeyboardDone = {viewModel.updateWeight(userEnterSalting)},
+                    parameter = uiState.weightOfCheese,
+                    cardsName = R.string.salting_card,
+                    cardFields = DataSource.saltingFields,
+                    modifier = Modifier
+                        .padding(dimensionResource(R.dimen.medium_padding))
+                        .fillMaxWidth()
+                )
+            }
         }
     }
 }
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

@@ -11,22 +11,21 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.cheeseapp.data.DataSource
-import com.example.cheeseapp.data.LambdaField
 import com.example.cheeseapp.ui.CheeseViewModel
 import com.example.cheeseapp.ui.Screens.IngredientsScreen
+import com.example.cheeseapp.ui.Screens.ManualScreen
+import com.example.cheeseapp.ui.Screens.PressingScreen
 import com.example.cheeseapp.ui.Screens.SaltingScreen
 import com.example.cheeseapp.ui.Screens.StartScreen
 
@@ -35,7 +34,6 @@ enum class MainScreen {
     Ingredients,
     Pressing,
     Salting,
-    Other,
     Manual
 }
 
@@ -52,6 +50,7 @@ fun CheeseApp(
         val uiState by viewModel.uiState.collectAsState()
         var userEnter by rememberSaveable { mutableStateOf("") }
         var userEnterSalting by rememberSaveable { mutableStateOf("") }
+        var userEnterPressing by rememberSaveable { mutableStateOf("")}
 
         NavHost(
             navController = navController,
@@ -62,13 +61,23 @@ fun CheeseApp(
                 StartScreen(
                     toIngredientsScreen = {navController.navigate(MainScreen.Ingredients.name)},
                     toSaltingScreen = {navController.navigate(MainScreen.Salting.name)},
-                    toOthersScreen = {navController.navigate(MainScreen.Other.name)},
+                    toPressingScreen = {navController.navigate(MainScreen.Pressing.name)},
                     toManualScreen = {navController.navigate(MainScreen.Manual.name)},
                     modifier = Modifier
                         .padding(dimensionResource(R.dimen.medium_padding))
                         .fillMaxSize()
                 )
             }
+
+            composable(route = MainScreen.Manual.name){
+                ManualScreen(
+                    manual = DataSource.manual,
+                    modifier = Modifier
+                        .padding(dimensionResource(R.dimen.medium_padding))
+                        .fillMaxSize()
+                )
+            }
+
             composable(route = MainScreen.Ingredients.name){
                 IngredientsScreen(
                     uiState = uiState,
@@ -95,15 +104,15 @@ fun CheeseApp(
             }
 
             composable(route = MainScreen.Pressing.name){
-                SaltingScreen(
-                    userEnter = userEnterSalting,
-                    onUserEntering = {newValue: String -> userEnterSalting = newValue},
-                    onKeyboardDone = {viewModel.updateWeight(userEnterSalting)},
-                    parameter = uiState.weightOfCheese,
+                PressingScreen(
+                    userEnter = userEnterPressing,
+                    onUserEntering = {newValue: String -> userEnterPressing = newValue},
+                    onKeyboardDone = {viewModel.updateWeightPressing(userEnterPressing)},
+                    parameter = uiState.weightOfCheesePressing,
                     parameterName = R.string.weight_of_cheese,
                     parameterDimen = R.string.gr,
                     cardsName = R.string.pressing_card,
-                    cardFields = DataSource.saltingFields,
+                    cardFields = DataSource.pressingFields,
                     modifier = Modifier
                         .padding(dimensionResource(R.dimen.medium_padding))
                         .fillMaxWidth()
@@ -111,7 +120,19 @@ fun CheeseApp(
             }
 
             composable(route = MainScreen.Salting.name){
-
+                SaltingScreen(
+                    userEnter = userEnterSalting,
+                    onUserEntering = {newValue: String -> userEnterSalting = newValue},
+                    onKeyboardDone = {viewModel.updateWeightSalting(userEnterSalting)},
+                    parameter = uiState.weightOfCheeseSalting,
+                    parameterName = R.string.weight_of_cheese,
+                    parameterDimen = R.string.gr,
+                    cardsName = R.string.salting_card,
+                    cardFields = DataSource.saltingFields,
+                    modifier = Modifier
+                        .padding(dimensionResource(R.dimen.medium_padding))
+                        .fillMaxWidth()
+                )
             }
         }
     }

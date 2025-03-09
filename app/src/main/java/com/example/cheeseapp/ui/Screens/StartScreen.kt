@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -22,7 +21,7 @@ fun StartScreen(
     modifier: Modifier = Modifier,
     toIngredientsScreen: () -> Unit = {},
     toSaltingScreen: () -> Unit = {},
-    toOthersScreen: () -> Unit = {},
+    toPressingScreen: () -> Unit = {},
     toManualScreen: () -> Unit = {},
 ){
     Column(
@@ -36,6 +35,10 @@ fun StartScreen(
                 .padding(dimensionResource(R.dimen.small_padding)))
 
         StartScreenButton(
+            onClick = toManualScreen,
+            text = stringResource(R.string.manual)
+        )
+        StartScreenButton(
             onClick = toIngredientsScreen,
             text = stringResource(R.string.ingredients_card)
         )
@@ -44,12 +47,8 @@ fun StartScreen(
             text = stringResource(R.string.salting_card)
         )
         StartScreenButton(
-            onClick = toOthersScreen,
-            text = stringResource(R.string.other_info)
-        )
-        StartScreenButton(
-            onClick = toManualScreen,
-            text = stringResource(R.string.manual)
+            onClick = toPressingScreen,
+            text = stringResource(R.string.pressing_card)
         )
 
         HorizontalDivider(

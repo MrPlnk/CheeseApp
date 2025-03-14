@@ -25,6 +25,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.cheeseapp.R
+import com.example.cheeseapp.data.CardData
 import com.example.cheeseapp.data.Field
 import com.example.cheeseapp.data.LambdaField
 import com.example.cheeseapp.ui.components.FieldComposable
@@ -34,25 +35,13 @@ import com.example.cheeseapp.ui.components.PatternCard
 
 @Composable
 fun SaltingScreen(
-    userEnter: String,
-    onUserEntering: (String) -> Unit,
-    onKeyboardDone: () -> Unit,
-    parameter: String,
-    @StringRes parameterName: Int,
-    @StringRes parameterDimen: Int,
     @StringRes cardsName: Int,
-    cardFields: List<LambdaField>,
+    cardData: CardData,
     modifier: Modifier = Modifier
-){
+) {
     PatternCard(
-        userEnter = userEnter,
-        onUserEntering = onUserEntering,
-        onKeyboardDone = onKeyboardDone,
-        parameter = parameter,
         cardsName = cardsName,
-        parameterName = parameterName,
-        parameterDimen = parameterDimen,
-        cardFields = cardFields,
+        cardData = cardData,
         modifier = modifier
     )
 }

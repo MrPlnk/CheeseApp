@@ -1,68 +1,106 @@
 package com.example.cheeseapp.data
 
+import androidx.compose.runtime.MutableState
 import com.example.cheeseapp.R
 
 object DataSource {
-    val pressingFields: List<LambdaField> = listOf(
-        LambdaField(
-            R.string.minutes_15,
-            {
-                newValue: String ->
-                val intermediateResult = newValue.toFloatOrNull() ?: 0f
-                val result = intermediateResult * 2f / 1000f
-                val resultString = result.toString()
-                resultString
-            },
-            R.string.kg,
+
+    val pressingCardData: CardData = CardData(
+        lambdaFields = listOf(
+            LambdaField(
+                R.string.minutes_15,
+                {
+                        newValue: String ->
+                    val intermediateResult = newValue.toFloatOrNull() ?: 0f
+                    val result = intermediateResult * 2f / 1000f
+                    val resultString = result.toString()
+                    resultString
+                },
+                R.string.kg,
+            ),
+            LambdaField(
+                R.string.minutes_30,
+                {
+                        newValue: String ->
+                    val intermediateResult = newValue.toFloatOrNull() ?: 0f
+                    val result = intermediateResult * 3f / 1000f
+                    val resultString = result.toString()
+                    resultString
+                },
+                R.string.kg
+            ),
+            LambdaField(
+                R.string.minutes_120,
+                {
+                        newValue: String ->
+                    val intermediateResult = newValue.toFloatOrNull() ?: 0f
+                    val result = intermediateResult * 5f / 1000f
+                    val resultString = result.toString()
+                    resultString
+                },
+                R.string.kg
+            ),
+            LambdaField(
+                R.string.hours_10,
+                {
+                        newValue: String ->
+                    val intermediateResult = newValue.toFloatOrNull() ?: 0f
+                    val result = intermediateResult * 8f / 1000f
+                    val resultString = result.toString()
+                    resultString
+                },
+                R.string.kg
+            )
         ),
-        LambdaField(
-            R.string.minutes_30,
-            {
-                newValue: String ->
-                val intermediateResult = newValue.toFloatOrNull() ?: 0f
-                val result = intermediateResult * 3f / 1000f
-                val resultString = result.toString()
-                resultString
-            },
-            R.string.kg
+        inputTexts = listOf(
+            InputText(
+                parameterName = R.string.weight_of_cheese,
+                parameterDimen = R.string.gr
+            ),
+            InputText(
+                parameterName = R.string.weight_of_container,
+                parameterDimen = R.string.gr,
+            )
         ),
-        LambdaField(
-            R.string.minutes_120,
-        {
-            newValue: String ->
-            val intermediateResult = newValue.toFloatOrNull() ?: 0f
-            val result = intermediateResult * 5f / 1000f
-            val resultString = result.toString()
+        thread = {
+                newValue: MutableList<MutableState<String>> ->
+            val resultString = ((newValue[0].value.toFloatOrNull() ?: 0f) - (newValue[1].value.toFloatOrNull() ?: 0f)).toString()
             resultString
-        },
-        R.string.kg
-        ),
-        LambdaField(
-            R.string.hours_10,
-            {
-                newValue: String ->
-                val intermediateResult = newValue.toFloatOrNull() ?: 0f
-                val result = intermediateResult * 8f / 1000f
-                val resultString = result.toString()
-                resultString
-            },
-            R.string.kg
-        )
+        }
     )
 
-    val saltingFields: List<LambdaField> = listOf(
-        LambdaField(
-            R.string.salt,
-            {
-                newValue: String ->
-                val intermediateResult = newValue.toFloatOrNull() ?: 0f
-                val result = intermediateResult * 30f / 1000f
-                val resultString = result.toString()
-                resultString
-            },
-            R.string.gr,
-        )
+    val saltingCardData: CardData = CardData(
+        lambdaFields = listOf(
+            LambdaField(
+                R.string.salt,
+                {
+                        newValue: String ->
+                    val intermediateResult = newValue.toFloatOrNull() ?: 0f
+                    val result = intermediateResult * 30f / 1000f
+                    val resultString = result.toString()
+                    resultString
+                },
+                R.string.gr,
+            )
+        ),
+        inputTexts = listOf(
+            InputText(
+                parameterName = R.string.weight_of_cheese,
+                parameterDimen = R.string.gr
+            ),
+            InputText(
+                parameterName = R.string.weight_of_container,
+                parameterDimen = R.string.gr,
+            )
+        ),
+        thread = {
+                newValue: MutableList<MutableState<String>> ->
+            val resultString = ((newValue[0].value.toFloatOrNull() ?: 0f) - (newValue[1].value.toFloatOrNull() ?: 0f)).toString()
+            resultString
+        }
     )
+
+
 
     val manual: List<TitleDescription> = listOf(
         TitleDescription(

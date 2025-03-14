@@ -21,7 +21,9 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.cheeseapp.data.CardData
 import com.example.cheeseapp.data.DataSource
+import com.example.cheeseapp.data.InputText
 import com.example.cheeseapp.ui.CheeseViewModel
 import com.example.cheeseapp.ui.Screens.IngredientsScreen
 import com.example.cheeseapp.ui.Screens.ManualScreen
@@ -105,14 +107,8 @@ fun CheeseApp(
 
             composable(route = MainScreen.Pressing.name){
                 PressingScreen(
-                    userEnter = userEnterPressing,
-                    onUserEntering = {newValue: String -> userEnterPressing = newValue},
-                    onKeyboardDone = {viewModel.updateWeightPressing(userEnterPressing)},
-                    parameter = uiState.weightOfCheesePressing,
-                    parameterName = R.string.weight_of_cheese,
-                    parameterDimen = R.string.gr,
                     cardsName = R.string.pressing_card,
-                    cardFields = DataSource.pressingFields,
+                    cardData = DataSource.pressingCardData,
                     modifier = Modifier
                         .padding(dimensionResource(R.dimen.medium_padding))
                         .fillMaxWidth()
@@ -121,14 +117,8 @@ fun CheeseApp(
 
             composable(route = MainScreen.Salting.name){
                 SaltingScreen(
-                    userEnter = userEnterSalting,
-                    onUserEntering = {newValue: String -> userEnterSalting = newValue},
-                    onKeyboardDone = {viewModel.updateWeightSalting(userEnterSalting)},
-                    parameter = uiState.weightOfCheeseSalting,
-                    parameterName = R.string.weight_of_cheese,
-                    parameterDimen = R.string.gr,
                     cardsName = R.string.salting_card,
-                    cardFields = DataSource.saltingFields,
+                    cardData = DataSource.saltingCardData,
                     modifier = Modifier
                         .padding(dimensionResource(R.dimen.medium_padding))
                         .fillMaxWidth()

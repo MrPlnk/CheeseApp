@@ -17,6 +17,7 @@
     <string name="time">Время</string>
     <string name="salt">Соль</string>
     <string name="weight_of_cheese">Вес головки</string>
+    <string name="weight_of_container">Вес тары</string>
     
     <string name="kg">кг</string>
     <string name="gr">гр</string>

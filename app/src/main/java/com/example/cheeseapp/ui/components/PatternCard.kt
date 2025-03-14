@@ -58,9 +58,10 @@ fun PatternCard(
                     it,
                 )
             }
-            cardData.inputTexts.forEach {
+            cardData.inputTexts.forEachIndexed { index, inputText ->
                 InputTextComposable(
-                    it
+                    inputText = inputText,
+                    isLast = index == cardData.inputTexts.lastIndex
                 )
             }
 

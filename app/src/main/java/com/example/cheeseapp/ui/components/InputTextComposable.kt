@@ -1,5 +1,6 @@
 package com.example.cheeseapp.ui.components
 
+import androidx.compose.foundation.text.KeyboardActionScope
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.MaterialTheme.shapes
@@ -18,6 +19,16 @@ fun InputTextComposable(
     isLast: Boolean = false,
     modifier: Modifier = Modifier,
 ){
+    val imeAction: ImeAction
+
+    if (isLast){
+        imeAction = ImeAction.Done
+    }
+    else{
+        imeAction = ImeAction.Next
+
+    }
+
     OutlinedTextField(
         value = inputText.userEnter.value,
         onValueChange = inputText.onUserEntering,
@@ -27,11 +38,8 @@ fun InputTextComposable(
             Text(text = "${stringResource(inputText.parameterName)}, ${stringResource(inputText.parameterDimen)}")
         },
         keyboardOptions = KeyboardOptions.Default.copy(
-            imeAction = ImeAction.Done,
+            imeAction = imeAction,
             keyboardType = KeyboardType.Number
-        ),
-        keyboardActions = KeyboardActions(
-            onDone = {}
         ),
         modifier = modifier
     )

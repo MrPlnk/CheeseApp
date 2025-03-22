@@ -8,7 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import com.example.cheeseapp.R
-import com.example.cheeseapp.data.Field
+import com.example.cheeseapp.data.old.Field
 
 @Composable
 fun FieldComposable(

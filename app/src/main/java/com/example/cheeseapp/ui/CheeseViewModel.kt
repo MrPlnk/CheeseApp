@@ -1,7 +1,7 @@
 package com.example.cheeseapp.ui
 
 import androidx.lifecycle.ViewModel
-import com.example.cheeseapp.data.CheeseUiState
+import com.example.cheeseapp.data.old.CheeseUiState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow

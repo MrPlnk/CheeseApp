@@ -1,4 +1,4 @@
-package com.example.cheeseapp.data
+package com.example.cheeseapp.data.old
 
 data class CheeseUiState(
     val amountOfMilk: String = "",

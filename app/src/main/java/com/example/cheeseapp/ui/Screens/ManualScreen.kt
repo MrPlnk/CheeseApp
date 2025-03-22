@@ -16,8 +16,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.cheeseapp.R
-import com.example.cheeseapp.data.DataSource
-import com.example.cheeseapp.data.TitleDescription
+import com.example.cheeseapp.data.old.DataSource
+import com.example.cheeseapp.data.old.TitleDescription
 import com.example.cheeseapp.ui.components.TitleDescriptionComposable
 import com.example.cheeseapp.ui.theme.CheeseAppTheme
 

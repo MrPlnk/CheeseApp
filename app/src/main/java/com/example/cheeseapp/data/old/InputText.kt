@@ -1,9 +1,8 @@
-package com.example.cheeseapp.data
+package com.example.cheeseapp.data.old
 
 import androidx.annotation.StringRes
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 
 data class InputText(
     val userEnter: MutableState<String> = mutableStateOf(""),

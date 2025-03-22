@@ -13,7 +13,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.cheeseapp.R
-import com.example.cheeseapp.data.TitleDescription
+import com.example.cheeseapp.data.old.TitleDescription
 
 @Composable
 fun TitleDescriptionComposable(

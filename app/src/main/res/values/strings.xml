@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">CheeseApp</string>
+    <string name="HomeRes">Старорусский сырок</string>
     
     <string name="ingredients_card">Ингредиенты</string>
     <string name="pressing_card">Прессование</string>
@@ -8,6 +9,8 @@
 
     <string name="other_info">Другая информация</string>
     <string name="manual">Руководство</string>
+    <string name="menu">Меню</string>
+    <string name="calculator">Калькулятор</string>
 
     <string name="milk">Молоко</string>
     <string name="calcium">Кальций</string>

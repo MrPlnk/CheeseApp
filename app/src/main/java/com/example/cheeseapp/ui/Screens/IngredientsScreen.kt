@@ -19,8 +19,8 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.cheeseapp.R
-import com.example.cheeseapp.data.CheeseUiState
-import com.example.cheeseapp.data.Field
+import com.example.cheeseapp.data.old.CheeseUiState
+import com.example.cheeseapp.data.old.Field
 import com.example.cheeseapp.ui.components.FieldComposable
 
 @Composable

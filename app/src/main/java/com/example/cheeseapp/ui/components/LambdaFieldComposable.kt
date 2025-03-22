@@ -9,8 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import com.example.cheeseapp.R
-import com.example.cheeseapp.data.Field
-import com.example.cheeseapp.data.LambdaField
+import com.example.cheeseapp.data.old.LambdaField
 
 @Composable
 fun LambdaFieldComposable(

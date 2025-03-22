@@ -21,9 +21,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.cheeseapp.data.CardData
-import com.example.cheeseapp.data.DataSource
-import com.example.cheeseapp.data.InputText
+import com.example.cheeseapp.data.old.DataSource
 import com.example.cheeseapp.ui.CheeseViewModel
 import com.example.cheeseapp.ui.Screens.IngredientsScreen
 import com.example.cheeseapp.ui.Screens.ManualScreen
